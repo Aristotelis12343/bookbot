@@ -14,6 +14,8 @@ def count_characters(contents):
     return letters_freq
 
 
+def get_num(count):
+    return count["num"]
 
 def main():
     with open("books/frankenstein.txt") as f:
@@ -22,10 +24,14 @@ def main():
     print(file_contents)
     print(f"\n{number_of_words(file_contents)} words found in the document")
     count_char=count_characters(file_contents)
-   
+    sorted_list=[]
     for char in count_char:
         if char.isalpha()==True:
-            print(f"The {char} was found {count_char[char]} times")
+            sorted_list.append({"char":char,"num":count_char[char]})
+    sorted_list.sort(reverse=True,key=get_num)
+    for item in sorted_list:
+        print(f"The {item["char"]} character was found {item["num"]}")
+            
 
 
 
